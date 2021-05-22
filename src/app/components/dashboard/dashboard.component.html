@@ -1,0 +1,37 @@
+<div class="dashboard container">
+  <div>
+
+    <div class="dashboard--header">
+      <h3>Flights Status</h3>
+    </div>
+    <div class='dashboard--table'>
+      <table >
+        <tr>
+          <th>Flight Id</th>
+          <th>Status</th>
+          <th>Schedule Date</th>
+        </tr>
+        <tr *ngFor="let flight of flightData">
+          <td> {{flight.flightNumber}} </td>
+          <td [style.background-color]="setColorStatus(flight.flightStatusPublic)">{{flight.flightStatusPublicLangTransl}}</td>
+          <td>{{flight.flightScheduleDate}}</td>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="dashboard--pagination" *ngIf="pagination">
+      <pagination 
+      [boundaryLinks]="true" 
+      [totalItems]="pagination.fullCount"
+      [itemsPerPage]="pageSize"
+      (pageChanged)='pageChanged($event)'
+      [maxSize]='4'
+      previousText="&lsaquo;" 
+      nextText="&rsaquo;" 
+      firstText="&laquo;" 
+      lastText="&raquo;">
+      </pagination>
+    </div>
+  </div>
+</div>
+
