@@ -8,7 +8,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
-import { ErrorResponse } from '../components/dashboard/model/error';
+import { ErrorResponse } from '../model/error';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlightStatusService } from 'src/app/services/flight-status.service';
-import { FlightStatus } from './model/flight-status';
-import { Pagination } from './model/pagination';
+import { FlightStatus } from '../../model/flight-status';
+import { Pagination } from '../../model/pagination';
 
 @Component({
   selector: 'app-dashboard',

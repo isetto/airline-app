@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import * as moment from 'moment';
-import { FlightStatus } from '../components/dashboard/model/flight-status';
+import { FlightStatus } from '../model/flight-status';
 
 
 @Injectable({
