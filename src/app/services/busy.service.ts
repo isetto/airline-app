@@ -13,7 +13,7 @@ export class BusyService {
     this.spinner.show(undefined,{
       type: 'line-scale-party',
       bdColor: 'rgba(255,255,255,0)',
-      color: '#e95420'
+      color: '#3880ff'
     })
   }
 

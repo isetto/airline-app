@@ -32,13 +32,10 @@
               }
             ],
             "styles": [
-              "src/theme/variables.scss", "src/global.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/bootswatch/dist/united/bootstrap.css"
+              "src/theme/variables.scss", "src/global.scss"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

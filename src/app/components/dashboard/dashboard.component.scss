@@ -1,56 +1,49 @@
-.dashboard{
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f7f7f7;
-    overflow-y: auto;
-
-    &--header{
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    &--table{
-        padding: 10px;
-        table, th, td {
-            border: 1px solid black;
-             font-size: 0.9rem;
-            th, td{
-                width: 170px;
-                padding: 7px;
+.grid{
+    background-color: rgba(0,0,0,0.07);
+    padding: 20px;
+    margin: 10px 15%;
+    border-radius: 30px;
     
-                &:first-child{
-                    width: 80px;
-                }
-                &:last-child{
-                    width: 120px;
-                }
-            }
-          }
 
-          @media only screen and (max-width: 350px){
-                table, th, td{
-                    font-size: 0.8rem;
-                }
-                th, td{
-                    width: 140px;
-                    padding: 6px;
-        
-                    &:first-child{
-                        width: 60px;
-                    }
-                    &:last-child{
-                        width: 90px;
-                    }
-                }
-        }
+    @media only screen and (max-width: 650px)  {
+        margin: 10px 5%;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    @media only screen and (max-width: 420px)  {
+        margin: 10px 1%;
+        font-size: 0.8rem;
+        padding: 5px;
     }
 
-    &--pagination{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
+   
+
+    &--header-row{
+        font-weight: 500;
+        border-bottom: 2px solid #fff;
+    }
+
+    &--data-data{
+        border-bottom: 2px solid #fff;
+    }
+    
+}
+
+ion-row {
+    text-align: center;
+    }
+
+.search{
+    width: 70%;
+    margin: 10px 15%; 
+    @media only screen and (max-width: 650px)  {
+        width: 90%;
+        margin: 10px 5%;
+        font-size: 0.9rem;
+    }
+    @media only screen and (max-width: 420px)  {
+        width: 98%;
+        margin: 10px 1%;
+        font-size: 0.8rem;
     }
 }

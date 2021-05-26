@@ -1,37 +1,83 @@
-<div class="dashboard container">
-  <div>
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>
+      Flights Status
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <div class="dashboard--header">
-      <h3>Flights Status</h3>
-    </div>
-    <div class='dashboard--table'>
-      <table >
-        <tr>
-          <th>Flight Id</th>
-          <th>Status</th>
-          <th>Schedule Date</th>
-        </tr>
-        <tr *ngFor="let flight of flightData">
-          <td> {{flight.flightNumber}} </td>
-          <td [style.background-color]="setColorStatus(flight.flightStatusPublic)">{{flight.flightStatusPublicLangTransl}}</td>
-          <td>{{flight.flightScheduleDate}}</td>
-        </tr>
-      </table>
-    </div>
+<ion-content >
+    <ion-searchbar class='search' size=6 [formControl]="flightId" inputmode="numeric" placeholder="Search by id"></ion-searchbar>
+     <div class='grid'>
+        <ion-row class='grid--header-row'>
+        <ion-col size='2' data-testid='id-header-hook' tappable (click)="sortBy('flightNumber')">
+          Id
+          <ion-icon name='arrow-down' *ngIf='sortDirection == -1'></ion-icon>
+          <ion-icon name='arrow-up' *ngIf='sortDirection == 1'></ion-icon>
+        </ion-col>
+        <ion-col size='4'  tappable (click)="sortBy('flightStatusPublic')">
+          Status
+          <ion-icon name='arrow-down' *ngIf='sortDirection == -1'></ion-icon>
+          <ion-icon name='arrow-up' *ngIf='sortDirection == 1'></ion-icon>
+        </ion-col>
+        <ion-col  size='6' sm='6'  tappable (click)="sortBy('flightScheduleDate')">
+          Schedule Date
+          <ion-icon name='arrow-down' *ngIf='sortDirection == -1'></ion-icon>
+          <ion-icon name='arrow-up' *ngIf='sortDirection == 1'></ion-icon>
+        </ion-col>
+      </ion-row>
     
-    <div class="dashboard--pagination" *ngIf="pagination">
-      <pagination 
-      [boundaryLinks]="true" 
-      [totalItems]="pagination.fullCount"
-      [itemsPerPage]="pageSize"
-      (pageChanged)='pageChanged($event)'
-      [maxSize]='4'
-      previousText="&lsaquo;" 
-      nextText="&rsaquo;" 
-      firstText="&laquo;" 
-      lastText="&raquo;">
-      </pagination>
-    </div>
-  </div>
-</div>
+      <ion-row *ngFor="let flight of flightData" class='grid--data-row'>
+        <ion-col class='id-hook' size='2' >
+          {{flight.flightNumber}}
+        </ion-col>
+        <ion-col size='4'  [style.color]="setColorStatus(flight.flightStatusPublic)">
+          {{flight.flightStatusPublicLangTransl}}
+        </ion-col>
+        <ion-col no-padding size='6' sm='6' >
+          {{flight.flightScheduleDate}}
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+        <ion-col *ngIf='pagination' size='12' class='ion-text-center'>
+          {{pageNumber + 1}} of {{pagination.totalPages}}
+        </ion-col>
+    
+        <ion-col size='2' >
+          <ion-button fill='clear' (click)='goFirst()'>
+            <ion-icon name='play-back' slot='icon-only'></ion-icon>
+          </ion-button>
+        </ion-col>
+    
+        <ion-col size='2' >
+          <ion-button fill='clear' (click)='prevPage()'>
+            <ion-icon name='chevron-back' slot='icon-only'></ion-icon>
+          </ion-button>
+        </ion-col>
+    
+        <ion-col size='4' class='ion-text-center'>
+          <ion-select interface='popover' [(ngModel)]='pageSize' (ionChange)='loadFlights(true)'>
+            <ion-select-option [value]='5'>5</ion-select-option>
+            <ion-select-option [value]='10'>10</ion-select-option>
+            <ion-select-option [value]='25'>25</ion-select-option>
+            <ion-select-option [value]='50'>50</ion-select-option>
+          </ion-select>
+        </ion-col>
+    
+        <ion-col size='2' >
+          <ion-button data-testid='forward-hook' fill='clear' (click)='nextPage()'>
+            <ion-icon name='chevron-forward' slot='icon-only'></ion-icon>
+          </ion-button>
+        </ion-col>
+    
+        <ion-col size='2' >
+          <ion-button fill='clear' (click)='goLast()'>
+            <ion-icon name='play-forward' slot='icon-only'></ion-icon>
+          </ion-button>
+        </ion-col>
+    
+      </ion-row>
+     </div>
+</ion-content>
 

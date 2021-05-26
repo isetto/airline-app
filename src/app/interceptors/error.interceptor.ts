@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         const errors: ErrorResponse[] = error.error.errors
         if(errors.length > 0){
           errors.forEach((err: ErrorResponse)=>{
-            this.presentToast(err.description)
+            this.presentToast(err.name)
           })
           
         }
