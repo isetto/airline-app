@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import { FlightService } from 'src/app/services/flight-status.service';
 import { FlightStatus } from '../../model/flight-status';
 import { Pagination } from '../../model/pagination';
@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pageSize = 10
   totalRecords: number
   pagination: Pagination
-  resultsCount: number
   sortDirection = 1
   sortKey: string = null
   flightId = new FormControl('');
@@ -31,7 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.initSearch()
   }
 
-  initSearch(){
+  initSearch(): void{
     this.formSubscription = this.flightId.valueChanges.pipe(debounceTime(500)).subscribe(value=>{
       if(value === '') this.flightData = this.flightDataOriginal
       else this.loadFlightsById(value)
@@ -47,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-  loadFlightsById(flightId: number){
+  loadFlightsById(flightId: number): void{
     this.flightData = this.flightDataOriginal.filter(flight=> {
       const idString = flight.id.substr(flight.id.length - 4)
       return idString.includes(flightId.toString())
@@ -69,7 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.sort()
   }
 
-  sort(){
+  sort(): void{
     this.flightData = this.flightData.sort((a, b)=>{
       const valA = a[this.sortKey]
       const valB = b[this.sortKey]
@@ -77,7 +76,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-  compare(a: number | string, b: number | string, sortDirection: number) {
+  compare(a: number | string, b: number | string, sortDirection: number): number {
     return (a < b ? -1 : 1) * sortDirection;
   }
 
@@ -87,26 +86,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadFlights()
   }
 
-  nextPage(){
+  nextPage(): void{
     if(this.pageNumber >= this.pagination.totalPages-1) return
     this.pageNumber++
     this.loadFlights()
     this.flightId.setValue('')
   }
 
-  prevPage(){
+  prevPage(): void{
     this.pageNumber--
     this.loadFlights()
     this.flightId.setValue('')
   }
 
-  goFirst(){
+  goFirst(): void{
     this.pageNumber = 0
     this.loadFlights()
     this.flightId.setValue('')
   }
 
-  goLast(){
+  goLast(): void{
     this.pageNumber = this.pagination.totalPages -1
     this.loadFlights()
     this.flightId.setValue('')

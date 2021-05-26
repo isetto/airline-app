@@ -1,6 +1,5 @@
-import { ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {DebugElement} from '@angular/core';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {FlightService} from '../../services/flight-status.service'
 import {HttpClient} from '@angular/common/http';
 import {By} from '@angular/platform-browser';
@@ -9,7 +8,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard.component';
 import { flightData } from 'src/app/mock/flights-data';
 import { AppModule } from 'src/app/app.module';
-import { render, screen, fireEvent } from '@testing-library/angular'
+import { screen } from '@testing-library/angular'
 import { flightsDataSecondPage } from 'src/app/mock/flights-data-2';
 
 
@@ -48,9 +47,7 @@ describe('DashboardComponent', () => {
   }));
 
   it("should create the component", () => {
-
     expect(component).toBeTruthy();
-
   });
 
 
@@ -61,12 +58,11 @@ describe('DashboardComponent', () => {
       expect(row.length).toBe(10, "Unexpected number of tabs found");
   });
 
-  it("when type id in search should display proper record", waitForAsync(() => {
+  it("when type id in search var should display proper record", waitForAsync(() => {
     spyOn(flightService, 'getFlights').and.returnValue(of(flightData));
     fixture.detectChanges();
      const searchInput  = el.queryAll(By.css(".search"));  
      searchInput[0].nativeNode.value = '1175'
-
      fixture.whenStable().then(()=>{
       fixture.detectChanges();
       const row = el.queryAll(By.css(".grid--data-row"));  

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, debounceTime, distinctUntilChanged, map, retryWhen, switchMap } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import * as moment from 'moment';
-import { FlightStatus } from '../model/flight-status';
 
 
 @Injectable({
