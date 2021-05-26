@@ -91,21 +91,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if(this.pageNumber >= this.pagination.totalPages-1) return
     this.pageNumber++
     this.loadFlights()
+    this.flightId.setValue('')
   }
 
   prevPage(){
     this.pageNumber--
     this.loadFlights()
+    this.flightId.setValue('')
   }
 
   goFirst(){
     this.pageNumber = 0
     this.loadFlights()
+    this.flightId.setValue('')
   }
 
   goLast(){
     this.pageNumber = this.pagination.totalPages -1
     this.loadFlights()
+    this.flightId.setValue('')
   }
 
   ngOnDestroy(): void {
